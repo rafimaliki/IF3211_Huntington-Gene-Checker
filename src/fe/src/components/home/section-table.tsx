@@ -68,7 +68,7 @@ export default function Table() {
             to="/checker"
             className="inline-flex items-center justify-center rounded-md bg-blue-900 px-6 py-3 text-base font-medium text-white hover:bg-blue-950 transition-colors"
           >
-            Start Analyzing DNA Sequence{' '}
+            Start Checking DNA Sequence{' '}
             <ArrowRight size={16} className="ml-2" />
           </Link>
         </div>
