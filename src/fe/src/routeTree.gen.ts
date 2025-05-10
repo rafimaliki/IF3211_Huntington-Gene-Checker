@@ -15,7 +15,7 @@ import { Route as SplatImport } from './routes/$'
 import { Route as IndexImport } from './routes/index'
 import { Route as TeamIndexImport } from './routes/team/index'
 import { Route as HomeIndexImport } from './routes/home/index'
-import { Route as AnalyzerIndexImport } from './routes/analyzer/index'
+import { Route as CheckerIndexImport } from './routes/checker/index'
 import { Route as AboutIndexImport } from './routes/about/index'
 
 // Create/Update Routes
@@ -44,9 +44,9 @@ const HomeIndexRoute = HomeIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AnalyzerIndexRoute = AnalyzerIndexImport.update({
-  id: '/analyzer/',
-  path: '/analyzer/',
+const CheckerIndexRoute = CheckerIndexImport.update({
+  id: '/checker/',
+  path: '/checker/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -81,11 +81,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutIndexImport
       parentRoute: typeof rootRoute
     }
-    '/analyzer/': {
-      id: '/analyzer/'
-      path: '/analyzer'
-      fullPath: '/analyzer'
-      preLoaderRoute: typeof AnalyzerIndexImport
+    '/checker/': {
+      id: '/checker/'
+      path: '/checker'
+      fullPath: '/checker'
+      preLoaderRoute: typeof CheckerIndexImport
       parentRoute: typeof rootRoute
     }
     '/home/': {
@@ -111,7 +111,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/about': typeof AboutIndexRoute
-  '/analyzer': typeof AnalyzerIndexRoute
+  '/checker': typeof CheckerIndexRoute
   '/home': typeof HomeIndexRoute
   '/team': typeof TeamIndexRoute
 }
@@ -120,7 +120,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/about': typeof AboutIndexRoute
-  '/analyzer': typeof AnalyzerIndexRoute
+  '/checker': typeof CheckerIndexRoute
   '/home': typeof HomeIndexRoute
   '/team': typeof TeamIndexRoute
 }
@@ -130,17 +130,17 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/about/': typeof AboutIndexRoute
-  '/analyzer/': typeof AnalyzerIndexRoute
+  '/checker/': typeof CheckerIndexRoute
   '/home/': typeof HomeIndexRoute
   '/team/': typeof TeamIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$' | '/about' | '/analyzer' | '/home' | '/team'
+  fullPaths: '/' | '/$' | '/about' | '/checker' | '/home' | '/team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/about' | '/analyzer' | '/home' | '/team'
-  id: '__root__' | '/' | '/$' | '/about/' | '/analyzer/' | '/home/' | '/team/'
+  to: '/' | '/$' | '/about' | '/checker' | '/home' | '/team'
+  id: '__root__' | '/' | '/$' | '/about/' | '/checker/' | '/home/' | '/team/'
   fileRoutesById: FileRoutesById
 }
 
@@ -148,7 +148,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
   AboutIndexRoute: typeof AboutIndexRoute
-  AnalyzerIndexRoute: typeof AnalyzerIndexRoute
+  CheckerIndexRoute: typeof CheckerIndexRoute
   HomeIndexRoute: typeof HomeIndexRoute
   TeamIndexRoute: typeof TeamIndexRoute
 }
@@ -157,7 +157,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
   AboutIndexRoute: AboutIndexRoute,
-  AnalyzerIndexRoute: AnalyzerIndexRoute,
+  CheckerIndexRoute: CheckerIndexRoute,
   HomeIndexRoute: HomeIndexRoute,
   TeamIndexRoute: TeamIndexRoute,
 }
@@ -175,7 +175,7 @@ export const routeTree = rootRoute
         "/",
         "/$",
         "/about/",
-        "/analyzer/",
+        "/checker/",
         "/home/",
         "/team/"
       ]
@@ -189,8 +189,8 @@ export const routeTree = rootRoute
     "/about/": {
       "filePath": "about/index.tsx"
     },
-    "/analyzer/": {
-      "filePath": "analyzer/index.tsx"
+    "/checker/": {
+      "filePath": "checker/index.tsx"
     },
     "/home/": {
       "filePath": "home/index.tsx"

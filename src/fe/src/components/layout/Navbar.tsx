@@ -19,7 +19,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-10 bg-white border-b border-slate-200">
       <div className="mx-auto flex h-16 items-center justify-between px-4">
         <Link to="/home" className="text-xl font-bold text-blue-900">
-          DNA Analyzer
+          Huntington Gene Checker
         </Link>
         <nav className="flex space-x-8">
           <Link to="/home" className={linkClass('/home')}>
@@ -28,8 +28,8 @@ export default function Navbar() {
           <Link to="/about" className={linkClass('/about')}>
             About
           </Link>
-          <Link to="/analyzer" className={linkClass('/analyzer')}>
-            Analyzer
+          <Link to="/checker" className={linkClass('/checker')}>
+            Checker
           </Link>
           <Link to="/team" className={linkClass('/team')}>
             Our Team
