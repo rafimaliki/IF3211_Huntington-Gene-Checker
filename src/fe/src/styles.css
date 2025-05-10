@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 @import '@fontsource/jetbrains-mono';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply m-0;
   font-family: 'JetBrains Mono', monospace;

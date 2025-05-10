@@ -5,8 +5,8 @@ import { ArrowRight } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section className="py-16 bg-white w-[95%]">
-      <div className="container mx-auto px-4">
+    <section className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-slate-100">
+      <div className=" mx-auto px-4 py-16 bg-white w-[95%]">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl font-bold tracking-tight text-blue-900 md:text-5xl">

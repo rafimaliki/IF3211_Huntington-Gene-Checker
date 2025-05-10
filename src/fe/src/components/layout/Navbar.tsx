@@ -16,8 +16,8 @@ export default function Navbar() {
     }`
 
   return (
-    <header className="absolute w-full top-0 z-10 bg-white border-b border-slate-200">
-      <div className="mx-auto flex h-16 items-center justify-between px-4">
+    <header className="w-full bg-white ">
+      <div className="mx-auto flex h-16  items-center justify-between px-4 border-b border-slate-200">
         <Link to="/home" className="text-xl font-bold text-blue-900">
           Huntington Gene Checker
         </Link>
