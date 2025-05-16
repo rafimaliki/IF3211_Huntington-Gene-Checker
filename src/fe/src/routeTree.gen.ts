@@ -11,14 +11,26 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SecondaryImport } from './routes/_secondary'
+import { Route as PrimaryImport } from './routes/_primary'
 import { Route as SplatImport } from './routes/$'
 import { Route as IndexImport } from './routes/index'
-import { Route as TeamIndexImport } from './routes/team/index'
-import { Route as HomeIndexImport } from './routes/home/index'
-import { Route as CheckerIndexImport } from './routes/checker/index'
-import { Route as AboutIndexImport } from './routes/about/index'
+import { Route as SecondaryTeamIndexImport } from './routes/_secondary/team/index'
+import { Route as SecondaryCheckerIndexImport } from './routes/_secondary/checker/index'
+import { Route as SecondaryAboutIndexImport } from './routes/_secondary/about/index'
+import { Route as PrimaryHomeIndexImport } from './routes/_primary/home/index'
 
 // Create/Update Routes
+
+const SecondaryRoute = SecondaryImport.update({
+  id: '/_secondary',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PrimaryRoute = PrimaryImport.update({
+  id: '/_primary',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SplatRoute = SplatImport.update({
   id: '/$',
@@ -32,28 +44,28 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const TeamIndexRoute = TeamIndexImport.update({
+const SecondaryTeamIndexRoute = SecondaryTeamIndexImport.update({
   id: '/team/',
   path: '/team/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => SecondaryRoute,
 } as any)
 
-const HomeIndexRoute = HomeIndexImport.update({
-  id: '/home/',
-  path: '/home/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const CheckerIndexRoute = CheckerIndexImport.update({
+const SecondaryCheckerIndexRoute = SecondaryCheckerIndexImport.update({
   id: '/checker/',
   path: '/checker/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => SecondaryRoute,
 } as any)
 
-const AboutIndexRoute = AboutIndexImport.update({
+const SecondaryAboutIndexRoute = SecondaryAboutIndexImport.update({
   id: '/about/',
   path: '/about/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => SecondaryRoute,
+} as any)
+
+const PrimaryHomeIndexRoute = PrimaryHomeIndexImport.update({
+  id: '/home/',
+  path: '/home/',
+  getParentRoute: () => PrimaryRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -74,92 +86,142 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SplatImport
       parentRoute: typeof rootRoute
     }
-    '/about/': {
-      id: '/about/'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutIndexImport
+    '/_primary': {
+      id: '/_primary'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof PrimaryImport
       parentRoute: typeof rootRoute
     }
-    '/checker/': {
-      id: '/checker/'
-      path: '/checker'
-      fullPath: '/checker'
-      preLoaderRoute: typeof CheckerIndexImport
+    '/_secondary': {
+      id: '/_secondary'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof SecondaryImport
       parentRoute: typeof rootRoute
     }
-    '/home/': {
-      id: '/home/'
+    '/_primary/home/': {
+      id: '/_primary/home/'
       path: '/home'
       fullPath: '/home'
-      preLoaderRoute: typeof HomeIndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof PrimaryHomeIndexImport
+      parentRoute: typeof PrimaryImport
     }
-    '/team/': {
-      id: '/team/'
+    '/_secondary/about/': {
+      id: '/_secondary/about/'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof SecondaryAboutIndexImport
+      parentRoute: typeof SecondaryImport
+    }
+    '/_secondary/checker/': {
+      id: '/_secondary/checker/'
+      path: '/checker'
+      fullPath: '/checker'
+      preLoaderRoute: typeof SecondaryCheckerIndexImport
+      parentRoute: typeof SecondaryImport
+    }
+    '/_secondary/team/': {
+      id: '/_secondary/team/'
       path: '/team'
       fullPath: '/team'
-      preLoaderRoute: typeof TeamIndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof SecondaryTeamIndexImport
+      parentRoute: typeof SecondaryImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface PrimaryRouteChildren {
+  PrimaryHomeIndexRoute: typeof PrimaryHomeIndexRoute
+}
+
+const PrimaryRouteChildren: PrimaryRouteChildren = {
+  PrimaryHomeIndexRoute: PrimaryHomeIndexRoute,
+}
+
+const PrimaryRouteWithChildren =
+  PrimaryRoute._addFileChildren(PrimaryRouteChildren)
+
+interface SecondaryRouteChildren {
+  SecondaryAboutIndexRoute: typeof SecondaryAboutIndexRoute
+  SecondaryCheckerIndexRoute: typeof SecondaryCheckerIndexRoute
+  SecondaryTeamIndexRoute: typeof SecondaryTeamIndexRoute
+}
+
+const SecondaryRouteChildren: SecondaryRouteChildren = {
+  SecondaryAboutIndexRoute: SecondaryAboutIndexRoute,
+  SecondaryCheckerIndexRoute: SecondaryCheckerIndexRoute,
+  SecondaryTeamIndexRoute: SecondaryTeamIndexRoute,
+}
+
+const SecondaryRouteWithChildren = SecondaryRoute._addFileChildren(
+  SecondaryRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/about': typeof AboutIndexRoute
-  '/checker': typeof CheckerIndexRoute
-  '/home': typeof HomeIndexRoute
-  '/team': typeof TeamIndexRoute
+  '': typeof SecondaryRouteWithChildren
+  '/home': typeof PrimaryHomeIndexRoute
+  '/about': typeof SecondaryAboutIndexRoute
+  '/checker': typeof SecondaryCheckerIndexRoute
+  '/team': typeof SecondaryTeamIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/about': typeof AboutIndexRoute
-  '/checker': typeof CheckerIndexRoute
-  '/home': typeof HomeIndexRoute
-  '/team': typeof TeamIndexRoute
+  '': typeof SecondaryRouteWithChildren
+  '/home': typeof PrimaryHomeIndexRoute
+  '/about': typeof SecondaryAboutIndexRoute
+  '/checker': typeof SecondaryCheckerIndexRoute
+  '/team': typeof SecondaryTeamIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
-  '/about/': typeof AboutIndexRoute
-  '/checker/': typeof CheckerIndexRoute
-  '/home/': typeof HomeIndexRoute
-  '/team/': typeof TeamIndexRoute
+  '/_primary': typeof PrimaryRouteWithChildren
+  '/_secondary': typeof SecondaryRouteWithChildren
+  '/_primary/home/': typeof PrimaryHomeIndexRoute
+  '/_secondary/about/': typeof SecondaryAboutIndexRoute
+  '/_secondary/checker/': typeof SecondaryCheckerIndexRoute
+  '/_secondary/team/': typeof SecondaryTeamIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$' | '/about' | '/checker' | '/home' | '/team'
+  fullPaths: '/' | '/$' | '' | '/home' | '/about' | '/checker' | '/team'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/about' | '/checker' | '/home' | '/team'
-  id: '__root__' | '/' | '/$' | '/about/' | '/checker/' | '/home/' | '/team/'
+  to: '/' | '/$' | '' | '/home' | '/about' | '/checker' | '/team'
+  id:
+    | '__root__'
+    | '/'
+    | '/$'
+    | '/_primary'
+    | '/_secondary'
+    | '/_primary/home/'
+    | '/_secondary/about/'
+    | '/_secondary/checker/'
+    | '/_secondary/team/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
-  AboutIndexRoute: typeof AboutIndexRoute
-  CheckerIndexRoute: typeof CheckerIndexRoute
-  HomeIndexRoute: typeof HomeIndexRoute
-  TeamIndexRoute: typeof TeamIndexRoute
+  PrimaryRoute: typeof PrimaryRouteWithChildren
+  SecondaryRoute: typeof SecondaryRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
-  AboutIndexRoute: AboutIndexRoute,
-  CheckerIndexRoute: CheckerIndexRoute,
-  HomeIndexRoute: HomeIndexRoute,
-  TeamIndexRoute: TeamIndexRoute,
+  PrimaryRoute: PrimaryRouteWithChildren,
+  SecondaryRoute: SecondaryRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -174,10 +236,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/$",
-        "/about/",
-        "/checker/",
-        "/home/",
-        "/team/"
+        "/_primary",
+        "/_secondary"
       ]
     },
     "/": {
@@ -186,17 +246,35 @@ export const routeTree = rootRoute
     "/$": {
       "filePath": "$.tsx"
     },
-    "/about/": {
-      "filePath": "about/index.tsx"
+    "/_primary": {
+      "filePath": "_primary.tsx",
+      "children": [
+        "/_primary/home/"
+      ]
     },
-    "/checker/": {
-      "filePath": "checker/index.tsx"
+    "/_secondary": {
+      "filePath": "_secondary.tsx",
+      "children": [
+        "/_secondary/about/",
+        "/_secondary/checker/",
+        "/_secondary/team/"
+      ]
     },
-    "/home/": {
-      "filePath": "home/index.tsx"
+    "/_primary/home/": {
+      "filePath": "_primary/home/index.tsx",
+      "parent": "/_primary"
     },
-    "/team/": {
-      "filePath": "team/index.tsx"
+    "/_secondary/about/": {
+      "filePath": "_secondary/about/index.tsx",
+      "parent": "/_secondary"
+    },
+    "/_secondary/checker/": {
+      "filePath": "_secondary/checker/index.tsx",
+      "parent": "/_secondary"
+    },
+    "/_secondary/team/": {
+      "filePath": "_secondary/team/index.tsx",
+      "parent": "/_secondary"
     }
   }
 }
