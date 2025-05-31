@@ -24,7 +24,7 @@ function RouteComponent() {
       role: 'Developer',
       bio: 'Student of Informatics Engineering at Institut Teknologi Bandung',
       image:
-        'https://media.suara.com/pictures/653x366/2023/07/07/10677-tips-tampil-cool-ala-nicholas-saputra-instagramatunkenaru.jpg',
+        'https://media.licdn.com/dms/image/v2/D5603AQGOsCbttmlJ7g/profile-displayphoto-shrink_400_400/B56ZcSDpHEHEAs-/0/1748354637702?e=1753920000&v=beta&t=2uf7vu0uVqm-o_Hr1KQRN9s6x7d7KRVBN9ziRngx3d0',
       githubURL: 'https://github.com/nicholasrs05',
       linkedinURL: 'https://www.linkedin.com/in/nicholasrs05/',
     },
