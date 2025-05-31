@@ -14,7 +14,6 @@ function RouteComponent() {
   const [results, setResults] = useState<{
     cagCount: number
     risk: string
-    description: string
   } | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [showResults, setShowResults] = useState(false)
@@ -29,71 +28,46 @@ function RouteComponent() {
     setError(message)
   }
 
-  const analyzeDNA = () => {
+  const analyzeDNA = async () => {
     setAnalyzing(true)
 
-    setTimeout(() => {
-      try {
-        if (!dnaSequence) {
-          setError('No DNA sequence found. Please upload a file first.')
-          setAnalyzing(false)
-          return
-        }
-
-        const cleanedSequence = dnaSequence
-          .toUpperCase()
-          .replace(/[^ATGC]/g, '')
-
-        const cagRegex = /(?:CAG)+/g
-        const matches = cleanedSequence.match(cagRegex)
-
-        if (!matches) {
-          setError('No CAG repeats found in the DNA sequence.')
-          setAnalyzing(false)
-          return
-        }
-
-        let longestRepeat = ''
-        for (const match of matches) {
-          if (match.length > longestRepeat.length) {
-            longestRepeat = match
-          }
-        }
-
-        const cagCount = longestRepeat.length / 3
-
-        let risk = ''
-        let description = ''
-
-        if (cagCount <= 26) {
-          risk = 'Normal'
-          description =
-            "The number of CAG repeats is within the normal range. This is not associated with Huntington's disease."
-        } else if (cagCount <= 35) {
-          risk = 'Intermediate'
-          description =
-            'The number of CAG repeats is in the intermediate range. This is not associated with disease but may expand in future generations.'
-        } else if (cagCount <= 39) {
-          risk = 'Reduced Penetrance'
-          description =
-            "The number of CAG repeats indicates reduced penetrance. The individual may or may not develop symptoms of Huntington's disease."
-        } else {
-          risk = 'Full Penetrance'
-          description =
-            "The number of CAG repeats indicates full penetrance. The individual will develop Huntington's disease if they live a normal lifespan."
-        }
-
-        setResults({ cagCount, risk, description })
-        setShowResults(true)
-      } catch (err) {
-        setError(
-          'An error occurred during analysis. Please check your DNA sequence file format.',
-        )
-      } finally {
+    try {
+      if (!dnaSequence) {
+        setError('No DNA sequence found. Please upload a file first.')
         setAnalyzing(false)
+        return
       }
-    }, 2000)
+
+      const cleanedSequence = dnaSequence.toUpperCase().replace(/[^ATGC]/g, '')
+
+      const response = await fetch('http://127.0.0.1:8000/cag_repeats', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ dna_sequence: cleanedSequence }),
+      })
+
+      if (!response.ok) {
+        throw new Error('API call failed.')
+      }
+
+      const data = await response.json()
+
+      setResults({
+        cagCount: data.max_repeats,
+        risk: data.risk,
+      })
+      setShowResults(true)
+    } catch (err) {
+      setError(
+        'An error occurred during analysis. Please check your DNA sequence file or try again later.',
+      )
+    } finally {
+      setAnalyzing(false)
+    }
   }
+
 
   const resetAnalyzer = () => {
     setDnaSequence(null)
