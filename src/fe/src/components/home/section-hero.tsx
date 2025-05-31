@@ -35,7 +35,7 @@ export default function Hero() {
 
           <div className="flex justify-center">
             <div
-              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gray-200 rounded-lg shadow-lg overflow-hidden"
+              className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gray-200 rounded-lg overflow-hidden"
               aria-label="DNA double helix placeholder"
             >
               <Spline scene="https://prod.spline.design/FXwCPTpluBHZ3leo/scene.splinecode" />
