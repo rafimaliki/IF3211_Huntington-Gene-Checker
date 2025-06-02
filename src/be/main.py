@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from kmp import count_max_contiguous_cag_repeats, determine_huntington_risk
 import re
-
+import time
 app = FastAPI()
 
 app.add_middleware(
@@ -23,7 +23,17 @@ def read_root():
 
 @app.post("/cag_repeats")
 def get_cag_repeats(request: DNASeqRequest):
+    start_time = time.time()
+    
     dna_sequence = re.sub(r'[^ATGC]', '', request.dna_sequence.upper())
     max_repeats = count_max_contiguous_cag_repeats(dna_sequence)
     risk = determine_huntington_risk(max_repeats)
-    return {"max_repeats": max_repeats, "risk": risk}
+    
+    end_time = time.time()
+    execution_time_ms = (end_time - start_time) * 1000
+    
+    return {
+        "max_repeats": max_repeats, 
+        "risk": risk, 
+        "execution_time_ms": execution_time_ms
+    }

@@ -3,6 +3,7 @@ import { AlertCircle } from 'lucide-react'
 interface AnalysisResult {
   cagCount: number
   risk: string
+  time_exec: string
 }
 
 interface ResultsDisplayProps {
@@ -34,6 +35,7 @@ export default function ResultsDisplay({
           <span className="text-slate-600">Jumlah Pengulangan CAG:</span>
           <span className="font-medium">{results.cagCount}</span>
         </div>
+        <div><p>Time execution: {results.time_exec || 0} ms</p></div>
         <div className="py-2">
           <span className="text-slate-600 block mb-1">Penilaian Risiko:</span>
           <p className={`font-medium ${riskColor}`}>{riskMessage}</p>

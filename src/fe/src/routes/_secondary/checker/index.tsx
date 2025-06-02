@@ -14,6 +14,7 @@ function RouteComponent() {
   const [results, setResults] = useState<{
     cagCount: number
     risk: string
+    time_exec: string
   } | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [showResults, setShowResults] = useState(false)
@@ -53,10 +54,14 @@ function RouteComponent() {
       }
 
       const data = await response.json()
-
+      console.log(data);
+      if (!data){
+        throw new Error('Invalid response from API.')
+      }
       setResults({
         cagCount: data.max_repeats,
         risk: data.risk,
+        time_exec: data.execution_time_ms
       })
       setShowResults(true)
     } catch (err) {
