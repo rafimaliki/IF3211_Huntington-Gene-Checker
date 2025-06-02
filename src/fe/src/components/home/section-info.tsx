@@ -29,29 +29,29 @@ export default function InfoCards() {
     <section id="learn-more" className="py-16 bg-slate-100" ref={ref}>
       <div className="w-full mx-auto">
         <h2 className="text-3xl font-bold tracking-tight mb-6 text-center text-blue-900">
-          What is Huntington's Disease?
+          Apa Itu Penyakit Huntington?
         </h2>
         <p className="text-lg text-slate-600 mb-12 text-center -mt-4">
-          Huntington's disease is a progressive brain disorder caused by a
-          genetic mutation.
+          Penyakit Huntington adalah gangguan otak progresif yang disebabkan
+          oleh mutasi genetik.
         </p>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 w-[95%] mx-auto ">
           {[
             {
-              title: 'Genetic Basis',
+              title: 'Dasar Genetik',
               description:
-                "Huntington's disease is caused by a mutation in the HTT gene, which provides instructions for making a protein called huntingtin.",
+                'Penyakit Huntington disebabkan oleh mutasi pada gen HTT, yang memberikan instruksi untuk membuat protein bernama huntingtin.',
             },
             {
-              title: 'CAG Repeats',
+              title: 'Pengulangan CAG',
               description:
-                'The mutation involves a DNA segment known as a CAG trinucleotide repeat. People with Huntington’s disease have abnormally long CAG repeats.',
+                'Mutasi ini melibatkan segmen DNA yang dikenal sebagai pengulangan trinukleotida CAG. Orang dengan penyakit Huntington memiliki jumlah pengulangan CAG yang sangat panjang.',
             },
             {
-              title: 'Inheritance Pattern',
+              title: 'Pola Pewarisan',
               description:
-                "Huntington's disease has an autosomal dominant inheritance pattern, meaning one copy of the altered gene is sufficient to cause the disorder.",
+                'Penyakit Huntington memiliki pola pewarisan dominan autosomal, artinya satu salinan gen yang bermutasi cukup untuk menyebabkan gangguan ini.',
             },
           ].map((card, i) => (
             <motion.div

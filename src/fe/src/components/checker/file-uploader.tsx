@@ -44,7 +44,8 @@ export default function FileUploader({
         >
           <Upload size={32} className="mx-auto mb-4 text-slate-400" />
           <p className="text-slate-600 mb-4">
-            Drag and drop your DNA sequence file here, or click to browse
+            Seret dan jatuhkan file urutan DNA Anda di sini, atau klik untuk
+            mencari.
           </p>
           <input
             type="file"
@@ -54,7 +55,7 @@ export default function FileUploader({
             onChange={handleFileChange}
           />
           <button className="inline-flex items-center justify-center rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white hover:bg-blue-950 transition-colors">
-            Select File
+            Pilih file
           </button>
         </div>
       ) : (
@@ -71,7 +72,7 @@ export default function FileUploader({
               className="inline-flex items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-blue-900 border border-blue-900 hover:bg-blue-50 transition-colors"
               onClick={() => setFile(null)}
             >
-              Change
+              Ganti
             </button>
           </div>
 
@@ -79,7 +80,7 @@ export default function FileUploader({
             className="inline-flex items-center justify-center rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white hover:bg-blue-950 transition-colors w-full"
             onClick={readFile}
           >
-            Read DNA Sequence
+            Baca sekuens DNA
           </button>
         </div>
       )}

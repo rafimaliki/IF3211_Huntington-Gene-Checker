@@ -14,18 +14,17 @@ export default function ResultsDisplay({
   results,
   onReset,
 }: ResultsDisplayProps) {
-  // Extract label and message from backend response
   const riskMessage = results.risk
   const labelMatch = riskMessage.match(/\[(.*?)\]/)
-  const label = labelMatch ? labelMatch[1] : "Unknown"
+  const label = labelMatch ? labelMatch[1] : 'Unknown'
 
-  // Determine risk color based on label
-  const riskColor = {
-    "NORMAL": "text-green-600",
-    "KARIER": "text-amber-600",
-    "PENETRASI TIDAK LENGKAP": "text-orange-600",
-    "PENETRASI PENUH": "text-red-600",
-  }[label] || "text-slate-600"
+  const riskColor =
+    {
+      NORMAL: 'text-green-600',
+      KARIER: 'text-amber-600',
+      'PENETRASI TIDAK LENGKAP': 'text-orange-600',
+      'PENETRASI PENUH': 'text-red-600',
+    }[label] || 'text-slate-600'
 
   return (
     <div className="border-t border-slate-200 pt-6">

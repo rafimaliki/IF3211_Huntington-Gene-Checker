@@ -68,7 +68,6 @@ function RouteComponent() {
     }
   }
 
-
   const resetAnalyzer = () => {
     setDnaSequence(null)
     setResults(null)
@@ -79,17 +78,17 @@ function RouteComponent() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-8 text-blue-900">
-        Huntington's Disease DNA Analyzer
+        Alat Pemeriksa DNA untuk Risiko Penyakit Huntington
       </h1>
 
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="border-b border-slate-200 p-6">
           <h2 className="text-xl font-bold text-blue-800 mb-1">
-            Upload DNA Sequence
+            Unggah Sekuens DNA
           </h2>
           <p className="text-sm text-slate-600">
-            Upload a text file containing a DNA sequence to analyze for
-            Huntington's disease risk.
+            Unggah file teks yang berisi sekuens DNA untuk dianalisis risiko
+            penyakit Huntington.
           </p>
         </div>
         <div className="p-6">
@@ -117,14 +116,14 @@ function RouteComponent() {
                   onClick={analyzeDNA}
                   className="inline-flex items-center justify-center rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white hover:bg-blue-950 transition-colors w-full"
                 >
-                  Show Results
+                  Tampilkan Hasil
                 </button>
               )}
 
               {analyzing && (
                 <div className="text-center py-4">
                   <p className="text-slate-600 mb-3">
-                    Analyzing DNA sequence...
+                    Memeriksa sekuens DNA Anda...
                   </p>
                   <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
                     <div className="h-full bg-blue-600 rounded-full w-[45%]"></div>

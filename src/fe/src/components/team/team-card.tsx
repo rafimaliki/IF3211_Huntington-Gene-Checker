@@ -34,7 +34,7 @@ export default function TeamCard({
         <h3 className="text-lg font-bold text-blue-900">{name}</h3>
         <p className="text-sm text-blue-600 mb-2">{role}</p>
         <p className="text-sm text-slate-600 mb-2">{bio}</p>
-        <p className="text-xs text-slate-500 font-medium">Student ID: {id}</p>
+        <p className="text-xs text-slate-500 font-medium">ID: {id}</p>
       </div>
       <div className="border-t border-slate-200 p-4 flex justify-end gap-4">
         <a

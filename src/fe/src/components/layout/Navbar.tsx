@@ -23,16 +23,16 @@ export default function Navbar() {
 
         <nav className="flex flex-row  space-x-8 items-center">
           <Link to="/home" className={linkClass('/home')}>
-            Home
+            Beranda
           </Link>
           <Link to="/about" className={linkClass('/about')}>
-            About
+            Tentang
           </Link>
           <Link to="/checker" className={linkClass('/checker')}>
-            Checker
+            Alat Pemeriksa
           </Link>
           <Link to="/team" className={linkClass('/team')}>
-            Our Team
+            Tim Kami
           </Link>
         </nav>
       </div>

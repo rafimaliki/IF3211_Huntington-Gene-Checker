@@ -8,87 +8,85 @@ function RouteComponent() {
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-8 text-blue-900">
-        About Huntington's Disease DNA Analysis
+        Tentang Analisis DNA Penyakit Huntington
       </h1>
 
-      <div className="mb-12">
+      <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4 text-blue-800">
-          What is Huntington's Disease?
+          Apa itu Penyakit Huntington?
         </h2>
         <p className="mb-4 text-slate-700">
-          Huntington's disease (HD) is a progressive brain disorder that causes
-          uncontrolled movements, emotional problems, and loss of thinking
-          ability. It's caused by a mutation in the HTT gene, which provides
-          instructions for making a protein called huntingtin.
+          Penyakit Huntington (HD) adalah gangguan otak progresif yang
+          menyebabkan gerakan tak terkendali, masalah emosional, dan hilangnya
+          kemampuan berpikir. Penyakit ini disebabkan oleh mutasi pada gen HTT,
+          yang memberikan instruksi untuk membuat protein bernama huntingtin.
         </p>
         <p className="mb-4 text-slate-700">
-          The mutation that causes HD involves a DNA segment known as a CAG
-          trinucleotide repeat. Normally, this segment is repeated 10 to 35
-          times within the gene. In people with HD, the CAG segment is repeated
-          36 or more times.
+          Mutasi penyebab HD melibatkan segmen DNA yang dikenal sebagai
+          pengulangan trinukleotida CAG. Biasanya, segmen ini diulang sebanyak
+          10 hingga 35 kali dalam gen tersebut. Pada penderita HD, segmen CAG
+          ini diulang 36 kali atau lebih.
         </p>
-      </div>
+      </section>
 
-      <div className="mb-12">
+      <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4 text-blue-800">
-          How CAG Repeats Relate to Huntington's Disease
+          Hubungan Pengulangan CAG dengan Penyakit Huntington
         </h2>
         <p className="mb-4 text-slate-700">
-          The number of CAG repeats in the HTT gene determines whether a person
-          will develop HD and at what age symptoms will begin:
+          Jumlah pengulangan CAG dalam gen HTT menentukan apakah seseorang akan
+          mengembangkan HD dan pada usia berapa gejala mulai muncul:
         </p>
         <ul className="list-disc pl-6 space-y-2 mb-4 text-slate-700">
           <li>
-            <strong>10-26 repeats:</strong> Normal range, not associated with
-            HD.
+            <strong>10-26 pengulangan:</strong> Rentang normal, tidak terkait
+            dengan HD.
           </li>
           <li>
-            <strong>27-35 repeats:</strong> Intermediate range, not associated
-            with disease but may expand in future generations.
+            <strong>27-35 pengulangan:</strong> Rentang menengah, tidak terkait
+            dengan penyakit tetapi dapat meningkat pada generasi berikutnya.
           </li>
           <li>
-            <strong>36-39 repeats:</strong> Reduced penetrance, may or may not
-            develop symptoms.
+            <strong>36-39 pengulangan:</strong> Penetransi berkurang, mungkin
+            muncul gejala atau tidak.
           </li>
           <li>
-            <strong>40+ repeats:</strong> Full penetrance, will develop HD if
-            they live a normal lifespan.
+            <strong>40+ pengulangan:</strong> Penetransi penuh, akan
+            mengembangkan HD jika menjalani masa hidup normal.
           </li>
         </ul>
         <p className="mb-4 text-slate-700">
-          Generally, the higher the number of repeats, the earlier the onset of
-          symptoms and the more severe the course of the disease.
+          Secara umum, semakin banyak pengulangan, semakin dini gejala muncul
+          dan semakin parah perjalanan penyakitnya.
         </p>
-      </div>
+      </section>
 
-      <div className="mb-12">
+      <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4 text-blue-800">
-          About Our DNA Analyzer Tool
+          Tentang Alat Analisis DNA Kami
         </h2>
         <p className="mb-4 text-slate-700">
-          Our DNA Analyzer tool is designed for educational purposes to help
-          understand how CAG repeats in the HTT gene are analyzed and
-          interpreted. The tool:
+          Alat Analisis DNA kami dirancang untuk tujuan edukasi guna membantu
+          memahami bagaimana pengulangan CAG dalam gen HTT dianalisis dan
+          diinterpretasikan. Alat ini:
         </p>
         <ul className="list-disc pl-6 space-y-2 mb-4 text-slate-700">
+          <li>Menerima file urutan DNA dalam format umum (.txt, .fa)</li>
+          <li>Mengidentifikasi pengulangan CAG dalam urutan DNA</li>
+          <li>Menghitung jumlah pengulangan CAG secara berurutan</li>
           <li>
-            Accepts DNA sequence files in common formats (.txt, .fasta, .fa,
-            .seq)
-          </li>
-          <li>Identifies CAG repeats in the DNA sequence</li>
-          <li>Counts the number of consecutive CAG repeats</li>
-          <li>
-            Provides an interpretation based on established clinical guidelines
+            Memberikan interpretasi berdasarkan pedoman klinis yang telah
+            ditetapkan
           </li>
         </ul>
         <p className="mb-4 text-slate-700">
-          <strong>Important Note:</strong> This tool is for educational purposes
-          only and should not be used for clinical diagnosis. Proper genetic
-          testing for Huntington's disease should be performed by qualified
-          healthcare professionals in a clinical setting, accompanied by
-          appropriate genetic counseling.
+          <strong>Catatan Penting:</strong> Alat ini hanya untuk tujuan edukasi
+          dan tidak boleh digunakan untuk diagnosis klinis. Pemeriksaan genetik
+          yang tepat untuk penyakit Huntington harus dilakukan oleh tenaga medis
+          yang berkualifikasi di lingkungan klinis, disertai dengan konseling
+          genetik yang sesuai.
         </p>
-      </div>
+      </section>
     </div>
   )
 }
