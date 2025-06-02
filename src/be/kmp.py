@@ -1,23 +1,3 @@
-def compute_lps_array(pattern: str) -> list[int]:
-    m = len(pattern)
-    lps = [0] * m
-    length = 0
-    i = 1
-
-    while i < m:
-        if pattern[i] == pattern[length]:
-            length += 1
-            lps[i] = length
-            i += 1
-        else:
-            if length != 0:
-                length = lps[length - 1]
-            else:
-                lps[i] = 0
-                i += 1
-                
-    return lps
-
 def kmp_search(text: str, pattern: str) -> list[int]:
     n = len(text)
     m = len(pattern)
@@ -26,7 +6,6 @@ def kmp_search(text: str, pattern: str) -> list[int]:
     if n == 0:
         return []
 
-    lps = compute_lps_array(pattern)
     occurrences = []
 
     i = 0
@@ -39,10 +18,10 @@ def kmp_search(text: str, pattern: str) -> list[int]:
 
         if j == m:
             occurrences.append(i - j)
-            j = lps[j - 1]
+            j = 0
         elif i < n and pattern[j] != text[i]:
             if j != 0:
-                j = lps[j - 1]
+                j = 0
             else:
                 i += 1
 
@@ -57,13 +36,7 @@ def count_max_contiguous_cag_repeats(dna_sequence: str) -> int:
 
     cag_occurrences = kmp_search(dna_sequence, pattern)
 
-    if not cag_occurrences:
-        return 0
-
-    max_repeats = 0
-    current_repeats = 0
-    
-    if len(cag_occurrences) == 0:
+    if not cag_occurrences or len(cag_occurrences) == 0:
         return 0
     
     max_repeats = 1 
@@ -77,11 +50,8 @@ def count_max_contiguous_cag_repeats(dna_sequence: str) -> int:
             
         if current_repeats > max_repeats:
             max_repeats = current_repeats
-            
-    if not cag_occurrences:
-        return 0
 
-    return max_repeats if max_repeats > 0 else 0
+    return max_repeats
 
 
 def determine_huntington_risk(cag_repeats: int) -> str:
@@ -94,9 +64,9 @@ def determine_huntington_risk(cag_repeats: int) -> str:
     else:
         return f"[NORMAL] Jumlah pengulangan CAG: {cag_repeats}. Orang tersebut tidak berisiko mengembangkan penyakit Huntington dan menurunkannya."
     
-# if __name__ == "__main__":
-#     # Example usage
-#     dna_sequence = """CAGCAGCAGCAGCAGCAGCAGCAGCAGGCACAG"""
-#     max_repeats = count_max_contiguous_cag_repeats(dna_sequence)
-#     risk = determine_huntington_risk(max_repeats)
-#     print(f"Max CAG repeats: {max_repeats}, Risk: {risk}")
+if __name__ == "__main__":
+    # dna_sequence = "CAG" * 9 + "ALBERT" + "CAG" * 10
+    dna_sequence = "CAG" * 40
+    max_repeats = count_max_contiguous_cag_repeats(dna_sequence)
+    risk = determine_huntington_risk(max_repeats)
+    print(f"Max CAG repeats: {max_repeats}, Risk: {risk}")
