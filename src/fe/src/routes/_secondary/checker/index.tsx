@@ -41,27 +41,30 @@ function RouteComponent() {
 
       const cleanedSequence = dnaSequence.toUpperCase().replace(/[^ATGC]/g, '')
 
-      const response = await fetch('http://127.0.0.1:8000/cag_repeats', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        'https://if3211huntington-gene-checker-production.up.railway.app/cag_repeats',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ dna_sequence: cleanedSequence }),
         },
-        body: JSON.stringify({ dna_sequence: cleanedSequence }),
-      })
+      )
 
       if (!response.ok) {
         throw new Error('API call failed.')
       }
 
       const data = await response.json()
-      console.log(data);
-      if (!data){
+      console.log(data)
+      if (!data) {
         throw new Error('Invalid response from API.')
       }
       setResults({
         cagCount: data.max_repeats,
         risk: data.risk,
-        time_exec: data.execution_time_ms
+        time_exec: data.execution_time_ms,
       })
       setShowResults(true)
     } catch (err) {
